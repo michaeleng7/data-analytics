@@ -1,6 +1,7 @@
 import os
 import psycopg
 from dotenv import load_dotenv
+from pathlib import Path
 
 load_dotenv()
 
@@ -12,7 +13,9 @@ DB_CONFIG = {
     "port": os.getenv("DB_PORT", "5432"),
 }
 
-CSV_DIR = "1-lh_nautical_csv"
+# Directory containing CSV datasets
+BASE_DIR = Path(__file__).resolve().parent.parent
+CSV_DIR = BASE_DIR / "1-lh_nautical_csv"
 
 
 def ingest_csv_to_postgres():
